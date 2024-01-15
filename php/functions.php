@@ -22,6 +22,18 @@
     else echo "Task could not be updated";
   }
 
+  function updateTaskStatus() {
+    require_once "conn.php";
+
+    $id = $_POST['id'];
+    $status = $_POST['status'];
+
+    $query = "UPDATE chore SET status = '$status' WHERE id_chore = '$id'";
+    $result = mysqli_query($conn, $query);
+    if($result) header("location: ../index.php");
+    else echo "Task could not be updated";
+  }
+
   function deleteTask() {
     require_once "conn.php";
 
@@ -40,6 +52,9 @@
     }
     if ($verify == "updateName") {
       updateTaskName();
+    }
+    if ($verify == "updateStatus") {
+      updateTaskStatus();
     }
     if ($verify == "delete") {
       deleteTask();

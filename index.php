@@ -110,10 +110,16 @@
                 <!--form row end  -->
               </div>
             </div>
-            <div class="col-5 status-<?= $chore['status'] ?>" data-tab="status">
-              <button type="button" class="btn btn-outline-danger active">To-do</button>
-              <button type="button" class="btn btn-outline-warning">Doing</button>
-              <button type="button" class="btn btn-outline-success">Done</button>
+            <div class="col-5">
+              <form action="./php/functions.php" method="post">
+                <input type="text" name="id" value=<?= $chore['id'] ?> readonly class="d-none">
+                <input type="text" name="verify" value="updateStatus" readonly class="d-none">
+                <div class="status-<?= $chore['status'] ?>" data-tab="status">
+                  <button type="submit" name="status" value="0" class="btn btn-outline-danger active">To-do</button>
+                  <button type="submit" name="status" value="1" class="btn btn-outline-warning">Doing</button>
+                  <button type="submit" name="status" value="2" class="btn btn-outline-success">Done</button>
+                </div>
+              </form>
             </div>
             <div class="col-2">
               <form action="./php/functions.php" method="post">
