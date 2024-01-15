@@ -48,16 +48,16 @@
           <nav>
             <ul class="nav nav-tabs" data-tab="menu">
               <li class="nav-item">
-                <a class="nav-link active" href="#">All</a>
+                <a class="nav-link active" href="?">All</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">To-do</a>
+                <a class="nav-link" href="?filter=0">To-do</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Doing</a>
+                <a class="nav-link" href="?filter=1">Doing</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Done</a>
+                <a class="nav-link" href="?filter=2">Done</a>
               </li>
             </ul>
           </nav>
@@ -81,7 +81,20 @@
         <?php
           require_once "php/conn.php";
 
-          $query = "SELECT chore.id_chore 'id', chore.name 'name', chore.status 'status' FROM chore";
+          $query_filter = "";
+
+          if (isset($_GET['filter'])) {
+            $filter = $_GET['filter'];
+            if ($filter == "0") {
+              $query_filter = " WHERE status = 0";
+            } else if ($filter == "1") {
+              $query_filter = " WHERE status = 1";
+            } else if ($filter == "2") {
+              $query_filter = " WHERE status = 2";
+            }
+          }
+
+          $query = "SELECT chore.id_chore 'id', chore.name 'name', chore.status 'status' FROM chore" . $query_filter;
 
           $chores = mysqli_query($conn, $query);
           if ($chores -> num_rows != 0):
@@ -115,7 +128,7 @@
                 <input type="text" name="id" value=<?= $chore['id'] ?> readonly class="d-none">
                 <input type="text" name="verify" value="updateStatus" readonly class="d-none">
                 <div class="status-<?= $chore['status'] ?>" data-tab="status">
-                  <button type="submit" name="status" value="0" class="btn btn-outline-danger active">To-do</button>
+                  <button type="submit" name="status" value="0" class="btn btn-outline-danger">To-do</button>
                   <button type="submit" name="status" value="1" class="btn btn-outline-warning">Doing</button>
                   <button type="submit" name="status" value="2" class="btn btn-outline-success">Done</button>
                 </div>
