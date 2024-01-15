@@ -76,11 +76,22 @@
           <hr>
         </div>
         <!-- list header end -->
+
+        <?php
+          require_once "db/conn.php";
+
+          $query = "SELECT chore.name 'name', chore.status 'status' FROM chore";
+
+          $chores = mysqli_query($conn, $query);
+          if ($chores -> num_rows != 0):
+            while ($chore = mysqli_fetch_assoc($chores)):
+        ?>
+
         <!-- task list start -->
         <div class="row px-4 task">
           <div class="row">
             <div class="col-5">
-              <p class="" data-edit="task-name">Sample task</p>
+              <p class="" data-edit="task-name"><?= $chore['name'] ?></p>
               <div class="row edit-form d-none" data-edit="form">
                 <!-- form row start -->
                 <form action="" method="post">
@@ -96,7 +107,7 @@
                 <!--form row end  -->
               </div>
             </div>
-            <div class="col-5" data-tab="status">
+            <div class="col-5 status-<?= $chore['status'] ?>" data-tab="status">
               <button type="button" class="btn btn-outline-danger active">To-do</button>
               <button type="button" class="btn btn-outline-warning">Doing</button>
               <button type="button" class="btn btn-outline-success">Done</button>
@@ -112,42 +123,11 @@
           </div>
         </div>
         <!-- task list end -->
-        <!-- task list start -->
-        <div class="row px-4 task">
-          <div class="row">
-            <div class="col-5">
-              <p class="" data-edit="task-name">Sample task 2</p>
-              <div class="row edit-form d-none" data-edit="form">
-                <!-- form row start -->
-                <form action="" method="post">
-                  <div class="row g-2">
-                    <div class="col-auto">
-                      <input type="text" class="form-control border-dark-subtle"data-edit="input" name="chore" maxlength="50" size="30">
-                    </div>
-                    <div class="col-auto">
-                      <button type="submit" class="btn check" data-edit="check"><i class="bi bi-check-lg"></i></button>
-                    </div>
-                  </div>
-                </form>
-                <!--form row end  -->
-              </div>
-            </div>
-            <div class="col-5" data-tab="status">
-              <button type="button" class="btn btn-outline-danger active">To-do</button>
-              <button type="button" class="btn btn-outline-warning">Doing</button>
-              <button type="button" class="btn btn-outline-success">Done</button>
-            </div>
-            <div class="col-2">
-              <button type="button" class="btn delete"><i class="bi bi-trash3"></i></button>
-              <button type="button" class="btn edit" data-edit="button"><i class="bi bi-pencil-square"></i></button>
-            </div>
-          </div>
-          <div class="row gy-1">
-            <!-- divider -->
-            <hr>
-          </div>
-        </div>
-        <!-- task list end -->
+
+        <?php
+            endwhile;
+          endif;
+        ?>
       </div>
       <!-- wrapper row end -->
     </div>

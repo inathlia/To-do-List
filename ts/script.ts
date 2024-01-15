@@ -1,6 +1,6 @@
 import TabNav from "./TabNav.js";
 import EditButton from "./EditButton.js";
-
+import TabStatus from "./TabStatus.js";
 
 const menuItems = document.querySelectorAll('[data-tab="menu"] li a');
 
@@ -16,4 +16,10 @@ const editInput = document.querySelectorAll('[data-edit="input"]');
 
 if(taskName && editForm && editBtn && checkBtn) {
   const edit = new EditButton(Array.from(taskName), Array.from(editForm), Array.from(editBtn), Array.from(checkBtn), Array.from(editInput));
+}
+
+const status = document.querySelectorAll('[data-tab=status]');
+
+if(status) {
+  const tabStatus = new TabStatus(Array.from(status));
 }

@@ -27,7 +27,6 @@ export default class EditButton {
 
   private fillInputText() {
     this.editInput.forEach((input, index) => {
-      console.log(input);
       if (input instanceof HTMLInputElement) {
         input.value = this.taskName[index].textContent || '';
       }
