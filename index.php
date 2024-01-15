@@ -48,7 +48,7 @@
           <nav>
             <ul class="nav nav-tabs" data-tab="menu">
               <li class="nav-item">
-                <a class="nav-link active" href="?">All</a>
+                <a class="nav-link" href="?">All</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="?filter=0">To-do</a>
