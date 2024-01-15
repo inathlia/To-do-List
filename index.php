@@ -19,8 +19,8 @@
         </div>
         <!-- add chore form begin -->
         <div class="row gy-4">
+          <!-- form row start -->
           <form action="" method="post">
-            <!-- form row start -->
             <div class="row g-2 justify-content-md-center">
               <div class="col-auto">
                 <input type="text" class="form-control border-dark-subtle" name="chore" maxlength="50" size="50">
@@ -29,8 +29,8 @@
                 <button type="submit" class="btn btn-outline-primary">Add</button>
               </div>
             </div>
-            <!--form row end  -->
           </form>
+          <!--form row end  -->
         </div>
         <!-- add chore form end -->
       </div>
@@ -45,7 +45,7 @@
         <!-- navegation start -->
         <div class="row gy-4">
           <nav>
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs" data-tab="menu">
               <li class="nav-item">
                 <a class="nav-link active" href="#">All</a>
               </li>
@@ -77,19 +77,33 @@
         </div>
         <!-- list header end -->
         <!-- task list start -->
-        <div class="row px-4">
+        <div class="row px-4 task">
           <div class="row">
             <div class="col-5">
-              <p>Sample task</p>
+              <p class="" data-edit="task-name">Sample task</p>
+              <div class="row edit-form d-none" data-edit="form">
+                <!-- form row start -->
+                <form action="" method="post">
+                  <div class="row g-2">
+                    <div class="col-auto">
+                      <input type="text" class="form-control border-dark-subtle" name="chore" maxlength="50" size="30">
+                    </div>
+                    <div class="col-auto">
+                      <button type="submit" class="btn check"><i class="bi bi-check-lg"></i></button>
+                    </div>
+                  </div>
+                </form>
+                <!--form row end  -->
+              </div>
             </div>
-            <div class="col-5">
-              <button type="button" class="btn btn-outline-danger">To-do</button>
+            <div class="col-5" data-tab="status">
+              <button type="button" class="btn btn-outline-danger active">To-do</button>
               <button type="button" class="btn btn-outline-warning">Doing</button>
               <button type="button" class="btn btn-outline-success">Done</button>
             </div>
             <div class="col-2">
-              <button type="button" class="btn"><i class="bi bi-trash3"></i></button>
-              <button type="button" class="btn"><i class="bi bi-pencil-square"></i></button>
+              <button type="button" class="btn delete"><i class="bi bi-trash3"></i></button>
+              <button type="button" class="btn edit" data-edit="button"><i class="bi bi-pencil-square"></i></button>
             </div>
           </div>
           <div class="row gy-1">
@@ -105,5 +119,6 @@
 
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script type="module" src="./dist/script.js"></script>
 </body>
 </html>
