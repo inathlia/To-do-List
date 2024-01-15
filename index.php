@@ -20,10 +20,11 @@
         <!-- add chore form begin -->
         <div class="row gy-4">
           <!-- form row start -->
-          <form action="" method="post">
+          <form action="./php/functions.php" method="post">
             <div class="row g-2 justify-content-md-center">
               <div class="col-auto">
-                <input type="text" class="form-control border-dark-subtle" name="chore" maxlength="50" size="50">
+                <input type="text" class="form-control border-dark-subtle" name="name" maxlength="50" size="50">
+                <input type="text" name="verify" value="create" readonly class="d-none">
               </div>
               <div class="col-auto">
                 <button type="submit" class="btn btn-outline-primary">Add</button>
@@ -78,9 +79,9 @@
         <!-- list header end -->
 
         <?php
-          require_once "db/conn.php";
+          require_once "php/conn.php";
 
-          $query = "SELECT chore.name 'name', chore.status 'status' FROM chore";
+          $query = "SELECT chore.id_chore 'id', chore.name 'name', chore.status 'status' FROM chore";
 
           $chores = mysqli_query($conn, $query);
           if ($chores -> num_rows != 0):
@@ -94,10 +95,12 @@
               <p class="" data-edit="task-name"><?= $chore['name'] ?></p>
               <div class="row edit-form d-none" data-edit="form">
                 <!-- form row start -->
-                <form action="" method="post">
+                <form action="./php/functions.php" method="post">
                   <div class="row g-2">
                     <div class="col-auto">
-                      <input type="text" class="form-control border-dark-subtle"data-edit="input" name="chore" maxlength="50" size="30">
+                      <input type="text" name="id" value=<?= $chore['id'] ?> readonly class="d-none">
+                      <input type="text" class="form-control border-dark-subtle"data-edit="input" name="name" maxlength="50" size="30">
+                      <input type="text" name="verify" value="updateName" readonly class="d-none">
                     </div>
                     <div class="col-auto">
                       <button type="submit" class="btn check" data-edit="check"><i class="bi bi-check-lg"></i></button>
@@ -113,8 +116,12 @@
               <button type="button" class="btn btn-outline-success">Done</button>
             </div>
             <div class="col-2">
-              <button type="button" class="btn delete"><i class="bi bi-trash3"></i></button>
-              <button type="button" class="btn edit" data-edit="button"><i class="bi bi-pencil-square"></i></button>
+              <form action="./php/functions.php" method="post">
+                <input type="text" name="id" value=<?= $chore['id'] ?> readonly class="d-none">
+                <input type="text" name="verify" value="delete" readonly class="d-none">
+                <button type="submit" class="btn delete"><i class="bi bi-trash3"></i></button>
+                <button type="button" class="btn edit" data-edit="button"><i class="bi bi-pencil-square"></i></button>
+              </form>
             </div>
           </div>
           <div class="row gy-1">
